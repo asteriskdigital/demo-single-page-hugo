@@ -1,0 +1,118 @@
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>{{site.Title}}</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+    <style>
+      .hero {
+        background-color: #61b9d6;
+        background-image: url(https://source.unsplash.com/YSjtPzUV64s/2400x1500);
+        background-position: center center;
+        background-size: cover;
+      }
+      .hero h2 {
+        color: white
+      }
+      header{
+        padding: 8rem 0;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .cards.feature .card {
+        flex: 1 0 calc(33% - 1rem);
+        box-shadow: var(--card-shadow);
+        padding: calc(var(--spacing-block) * var(--spacing-factor-sm));
+        margin:.5rem;
+      }
+
+      .cards.team .card {
+        flex: 1 0 calc(50% - 1rem);
+        box-shadow: var(--card-shadow);
+        padding: calc(var(--spacing-block) * var(--spacing-factor-sm));
+        margin:.5rem;
+        text-align: center;
+      }
+
+      body>footer {
+        background-color: #222f33;
+        padding: 4rem 4rem 4rem 4rem;
+        margin: 0 0;
+        width: 100%;
+        color: whitesmoke;
+
+      }
+
+      div.small {
+        margin: 1rem 0;
+      }
+      .small p {
+        font-size: 75%;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <!-- Begin Hero markup -->
+    <div class="hero" data-theme="dark">
+      <header class="container">
+        <hgroup>
+          <h1>{{ site.Title }}</h1>
+          <h2>{{ .Title }}</h2>
+        </hgroup>
+        <p><a href="#" role="button">Call to action</a></p>
+      </header>
+    </div>
+    <!-- End Hero markup -->
+  
+    <main class="container">
+      
+      {{ .Content }}
+
+      <hr>
+
+      <h2>Features</h2>
+      
+      <div class="cards feature">
+        {{ range where site.RegularPages "Section" "features" }}
+          <div class="card feature">
+            <h3>{{ .Title }} </h3>
+            {{ .Content }}
+          </div>
+        {{ end }}
+      </div>
+
+      <hr>
+      <h2>The Team</h2>
+      <div class="cards team">
+        {{ range where site.RegularPages "Section" "team" }}
+          <div class="card team">
+            <h3>{{ .Title }} </h3>
+              {{ with .Resources.GetMatch "photo.jpg" }}
+                {{ $img := .Fill "200x200"}}
+                <img src="{{$img.Permalink}}">
+              {{ end }}
+              
+            <div class="small">{{.Content}}</div>
+          </div>
+        {{ end }}
+      </div>
+  
+    </main>
+
+    <footer class="">
+      <small>
+        Built with Hugo version {{ hugo.Version }}
+      </small>
+    </footer>
+  </body>
+
+</html>

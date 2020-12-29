@@ -1,0 +1,3 @@
+title = "My Single Page Website"
+description = "Some description here"
+disableKinds = ["section", "taxonomy", "term"]
