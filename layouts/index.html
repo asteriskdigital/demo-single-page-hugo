@@ -26,18 +26,20 @@
         flex-direction: row;
         flex-wrap: wrap;
       }
+
+      .card {
+        box-shadow: rgba(27, 40, 50, 0.04) 0px 2.5px 20px 0px, 
+                    rgba(27, 40, 50, 0.08) 0px 2.5px 40px 0px, 
+                      rgba(27, 40, 50, 0.024) 0px 0px 0px 1.25px;
+        padding: 2.5rem;
+        margin:.5rem;
+      }
       .cards.feature .card {
         flex: 1 0 calc(33% - 1rem);
-        box-shadow: var(--card-shadow);
-        padding: calc(var(--spacing-block) * var(--spacing-factor-sm));
-        margin:.5rem;
       }
 
       .cards.team .card {
         flex: 1 0 calc(50% - 1rem);
-        box-shadow: var(--card-shadow);
-        padding: calc(var(--spacing-block) * var(--spacing-factor-sm));
-        margin:.5rem;
         text-align: center;
       }
 
@@ -62,7 +64,7 @@
 
   <body>
     <!-- Begin Hero markup -->
-    <div class="hero" data-theme="dark">
+    <div class="hero">
       <header class="container">
         <hgroup>
           <h1>{{ site.Title }}</h1>
